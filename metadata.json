@@ -1,0 +1,6 @@
+{
+  "name": "DVA Volleyball - Indoor Arena & Scrimmage Training",
+  "description": "Hệ thống đặt sân bóng chuyền trong nhà DVA Volleyball, đăng ký Scrimmage và các khóa đào tạo kỹ năng chuyên nghiệp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
