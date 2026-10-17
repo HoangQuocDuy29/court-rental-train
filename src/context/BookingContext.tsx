@@ -9,6 +9,11 @@ import {
   generateSlotsForDate,
 } from '../data/mockData';
 import { submitCourtBooking } from '../services/googleSheetService';
+import {
+  subscribeToLockedSlots,
+  toggleSlotLockFirebase,
+  saveBookingToFirebase,
+} from '../services/firebase';
 
 const STORAGE_KEY_LOCKED_SLOTS = 'dva_volleyball_locked_slots';
 const STORAGE_KEY_BANK_CONFIG = 'dva_volleyball_bank_config';
@@ -185,6 +190,21 @@ export const BookingProvider: React.FC<{ children: React.ReactNode }> = ({ child
     }
   });
 
+  // Real-time synchronization of locked slots across all devices via Firebase
+  useEffect(() => {
+    const unsubscribe = subscribeToLockedSlots((firebaseLockedIds) => {
+      if (Array.isArray(firebaseLockedIds)) {
+        setLockedSlotIds(firebaseLockedIds);
+        try {
+          localStorage.setItem(STORAGE_KEY_LOCKED_SLOTS, JSON.stringify(firebaseLockedIds));
+        } catch (err) {
+          console.warn(err);
+        }
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
   // Persistent Bank config (allows owner to set personal account or custom QR image)
   const [bankConfig, setBankConfigState] = useState<BankConfig>(() => {
     try {
@@ -248,12 +268,16 @@ export const BookingProvider: React.FC<{ children: React.ReactNode }> = ({ child
     return days;
   };
 
-  // Toggle admin lock on a slot
-  const toggleAdminLockSlot = (slotId: string) => {
+  // Toggle admin lock on a slot with instant local update and cloud Firestore sync
+  const toggleAdminLockSlot = async (slotId: string) => {
+    const isCurrentlyLocked = lockedSlotIds.includes(slotId);
+    const shouldLock = !isCurrentlyLocked;
+
+    // 1. Cập nhật tức thì trên máy hiện tại (Optimistic UI)
     setLockedSlotIds((prev) => {
-      const next = prev.includes(slotId)
-        ? prev.filter((id) => id !== slotId)
-        : [...prev, slotId];
+      const next = shouldLock
+        ? [...prev, slotId]
+        : prev.filter((id) => id !== slotId);
       try {
         localStorage.setItem(STORAGE_KEY_LOCKED_SLOTS, JSON.stringify(next));
       } catch (err) {
@@ -261,6 +285,19 @@ export const BookingProvider: React.FC<{ children: React.ReactNode }> = ({ child
       }
       return next;
     });
+
+    // 2. Đồng bộ lên Firebase Firestore đám mây cho toàn bộ khách hàng trên thiết bị khác
+    try {
+      const slotObj = allSlots.find((s) => s.id === slotId);
+      await toggleSlotLockFirebase(slotId, shouldLock, {
+        courtId: slotObj?.courtId || selectedCourtId,
+        date: slotObj?.date || selectedDate,
+        startTime: slotObj?.startTime,
+        endTime: slotObj?.endTime,
+      });
+    } catch (err) {
+      console.error("Firebase sync error:", err);
+    }
   };
 
   // Generate slots for active date including owner's locked slots
@@ -424,10 +461,17 @@ export const BookingProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     try {
       await submitCourtBooking(payload);
+      // Lưu vào Firebase và tự động khóa ca trên đám mây cho mọi thiết bị
+      await saveBookingToFirebase(payload);
       setActiveBooking(payload);
       return payload;
     } catch (err) {
       console.error('Submit booking error:', err);
+      try {
+        await saveBookingToFirebase(payload);
+      } catch (fbErr) {
+        console.error('Firebase save booking fallback error:', fbErr);
+      }
       setActiveBooking(payload);
       return payload;
     } finally {
