@@ -53,7 +53,7 @@ export const Home: React.FC = () => {
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] font-display">
-                Đỉnh Cao Trải Nghiệm{' '}
+                Trải Nghiệm{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500">
                   DVA Volleyball
                 </span>{' '}
