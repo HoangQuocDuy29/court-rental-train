@@ -70,7 +70,7 @@ export const CourtGallery: React.FC = () => {
         <div>
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 text-xs font-bold mb-2">
             <Camera className="w-3.5 h-3.5" />
-            <span>HÌNH ẢNH THỰC TẾ DVA VOLLEYBALL</span>
+            <span>HÌNH ẢNH THỰC TẾ  CỦA SÂN</span>
           </div>
           <h2 className="text-3xl font-black text-white font-display">
             Không Gian Sân Bóng Chuyền Indoor

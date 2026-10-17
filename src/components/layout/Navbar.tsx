@@ -14,7 +14,7 @@ import {
   LogOut,
 } from 'lucide-react';
 import { useBooking } from '../../context/BookingContext';
-import { DVA_CONTACT_INFO } from '../../data/mockData';
+import { DVA_CONTACT_INFO, BRAND_CONFIG } from '../../data/mockData';
 
 interface NavbarProps {
   onOpenSheetConfig?: () => void;
@@ -23,6 +23,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenSheetConfig, onOpenBankConfig }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [logoError, setLogoError] = useState(false);
   const location = useLocation();
   const {
     selectedSlots,
@@ -72,21 +73,37 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSheetConfig, onOpenBankCon
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Brand Logo: DVA Volleyball */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-500 text-slate-950 font-black shadow-lg shadow-orange-500/20 group-hover:scale-105 transition-transform duration-200">
-              <span className="text-sm font-black tracking-tighter">DVA</span>
-              <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-slate-950" title="Sân mở cửa 06:00 - 23:30" />
-            </div>
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group">
+            {!logoError && BRAND_CONFIG.logoUrl ? (
+              <div className="relative flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+                <img
+                  src={BRAND_CONFIG.logoUrl}
+                  alt={BRAND_CONFIG.brandName}
+                  className="h-10 sm:h-12 w-auto max-w-[150px] object-contain drop-shadow"
+                  onError={() => setLogoError(true)}
+                />
+                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-slate-950" title="Sân mở cửa 06:00 - 23:30" />
+              </div>
+            ) : (
+              <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-500 text-slate-950 font-black shadow-lg shadow-orange-500/20 group-hover:scale-105 transition-transform duration-200">
+                <span className="text-sm font-black tracking-tighter">DVA</span>
+                <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-slate-950" title="Sân mở cửa 06:00 - 23:30" />
+              </div>
+            )}
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5">
-                <span className="text-xl font-extrabold tracking-tight text-white font-display">
-                  DVA <span className="text-amber-400">VOLLEYBALL</span>
+                <span className="text-xl font-extrabold tracking-tight text-white font-display flex items-center gap-1.5">
+                  {/* Nếu logo chưa load được thì hiện chữ DVA; khi có ảnh logo thì ảnh thay thế chữ DVA */}
+                  {logoError && <span>DVA</span>}
+                  {BRAND_CONFIG.showVolleyballText && (
+                    <span className="text-amber-400">VOLLEYBALL</span>
+                  )}
                 </span>
                 <span className="text-[10px] uppercase font-bold tracking-widest bg-amber-500/10 text-amber-400 border border-amber-500/20 px-1.5 py-0.5 rounded">
                   INDOOR
                 </span>
               </div>
-              <span className="text-xs text-slate-400 font-medium">Sân Thảm & Scrimmage Chuyên Nghiệp</span>
+              <span className="text-xs text-slate-400 font-medium">{BRAND_CONFIG.subTitle}</span>
             </div>
           </Link>
 

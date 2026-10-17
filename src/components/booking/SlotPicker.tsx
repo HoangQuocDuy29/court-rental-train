@@ -110,9 +110,6 @@ export const SlotPicker: React.FC = () => {
                 <CalendarIcon className="w-4 h-4 text-amber-400" />
                 1. Chọn ngày thi đấu:
               </label>
-              <span className="text-[11px] text-emerald-400 font-medium">
-                Tự động bỏ qua ngày quá khứ
-              </span>
             </div>
 
             <div className="flex flex-wrap items-center gap-2">

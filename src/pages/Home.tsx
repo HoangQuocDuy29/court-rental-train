@@ -147,7 +147,7 @@ export const Home: React.FC = () => {
                 <CourtVisualizer />
                 <div className="absolute -top-3 -right-3 bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-black text-xs px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 animate-bounce">
                   <Flame className="w-3.5 h-3.5" />
-                  <span>Mở cửa 06:00 - 23:30</span>
+                  <span>Mở cửa 06:00 - 21:30</span>
                 </div>
               </div>
             </div>

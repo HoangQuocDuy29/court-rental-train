@@ -4,13 +4,21 @@ export const BASE_PRICE_PER_HOUR = 550000;
 export const MIN_DURATION_HOURS = 1.5;
 export const DEFAULT_FREE_BONUS = 'Tặng miễn phí 01 bóng thi đấu Mikasa V200W chuẩn FIVB trong suốt ca chơi';
 
+// Cấu hình Logo và Thương hiệu
+export const BRAND_CONFIG = {
+  brandName: 'DVA VOLLEYBALL',
+  subTitle: 'Sân Thảm & Scrimmage Chuyên Nghiệp',
+  logoUrl: '/logom.png', // Đường dẫn file logo trong thư mục public/ (ví dụ '/logo.png') hoặc link ảnh online https://...
+  showVolleyballText: true, // true: hiển thị chữ "VOLLEYBALL" bên cạnh logo; false: chỉ hiển thị mỗi ảnh logo
+};
+
 export const DVA_CONTACT_INFO: ContactInfo = {
-  phone: '0988776655',
-  zalo: 'https://zalo.me/0988776655',
-  whatsapp: 'https://wa.me/84988776655',
-  instagram: 'https://instagram.com/dvavolleyball',
+  phone: '0768299329',
+  zalo: 'https://zalo.me/84768299329',
+  whatsapp: 'https://wa.me/84768299329',
+  instagram: 'https://www.instagram.com/_nathan.hq_/',
   address: '155 Trường Chinh',
-  hours: '06:00 - 23:30 (Mở cửa tất cả các ngày trong tuần)',
+  hours: '06:00 - 21:30 (Mở cửa tất cả các ngày trong tuần)',
   mapsUrl: 'https://maps.app.goo.gl/6Z89UgVcD1jApFxG7',
 };
 
@@ -19,51 +27,51 @@ export const COURT_PHOTOS = [
     id: 'photo-center-court',
     title: 'Toàn cảnh Sân thi đấu chính (Center Court)',
     category: 'Mặt sân thi đấu',
-    imageUrl: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: '/1.jpg',
     description: 'Thảm Gerflor Taraflex Sport M Plus 7.0mm chuẩn FIVB, trần cao 10.5m thông thoáng.',
   },
   {
     id: 'photo-net-lighting',
-    title: 'Hệ thống Lưới Senoh & Đèn LED chống chói',
+    title: 'Hệ thống Lưới Vifa Sport',
     category: 'Ánh sáng & Thiết bị',
-    imageUrl: 'https://images.unsplash.com/photo-1592656094267-764a45160876?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: '/4.jpg',
     description: 'Đèn trần Philips Sport 850 Lux chiếu tỏa đa hướng, không gây chói khi nhìn bóng trên không.',
   },
   {
     id: 'photo-mikasa-balls',
     title: 'Bóng thi đấu Mikasa V200W chính hãng',
     category: 'Trang thiết bị',
-    imageUrl: 'https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: '/5.jpeg',
     description: 'Mỗi ca chơi được miễn phí 01 bóng thi đấu cao cấp 18 múi xoáy đã đo áp suất chuẩn.',
   },
   {
     id: 'photo-training-court',
     title: 'Sân số 2 - Khu vực Scrimmage & Tập luyện',
     category: 'Sân tập luyện',
-    imageUrl: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: '/3.jpg',
     description: 'Không gian tập luyện nhóm, sửa kỹ thuật 1-1 và đấu tập cọ xát đối kháng liên tục.',
   },
   {
     id: 'photo-court-surface',
     title: 'Cận cảnh thảm giảm chấn 45% chống chấn thương',
     category: 'Mặt sàn Taraflex',
-    imageUrl: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: '/2.jpg',
     description: 'Bảo vệ đầu gối và mắt cá chân khi tiếp đất sau những cú nhảy đập cắm bóng căng.',
   },
   {
     id: 'photo-bench-locker',
-    title: 'Khu vực Nghỉ ngơi, Khán đài & Ghế Bench VĐV',
+    title: 'Feedback từ khách hàng về trải nghiệm sân',
     category: 'Tiện ích sân',
-    imageUrl: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: '6.jpg',
     description: 'Hệ thống quạt đối lưu mát mẻ, bàn ghi điểm điện tử và ghế chờ cho các đội giao lưu.',
   },
 ];
 
 export const INITIAL_BANK_CONFIG: BankConfig = {
-  bankId: 'MB', // MBBank
-  bankName: 'Ngân hàng Quân Đội (MB Bank)',
-  accountNo: '8866228888',
-  accountName: 'DVA VOLLEYBALL',
+  bankId: 'MB', // Vietcombank
+  bankName: 'Ngân hàng Thương mại Cổ phần Quân Đội (MB)',
+  accountNo: '0002090671521',
+  accountName: 'HOANG QUOC DUY',
   template: 'compact2',
   customQrImageUrl: '',
 };
@@ -71,18 +79,18 @@ export const INITIAL_BANK_CONFIG: BankConfig = {
 export const COURTS = [
   {
     id: 'court-1',
-    name: 'Sân 1 - DVA Center Court (FIVB Taraflex)',
+    name: 'Sân A ',
     flooring: 'Thảm Gerflor Taraflex Sport M Plus 7.0mm',
     ceilingHeight: '10.5 mét chuẩn thi đấu quốc tế',
     lighting: 'LED Philips Sport 850 Lux chống chói',
     netSystem: 'Cột & Lưới Senoh tiêu chuẩn Olympic',
-    capacity: 'Khán đài 120 chỗ ngồi thoáng mát',
+    capacity: 'Sức chứa 50 người',
     tag: 'Sân Thi Đấu & Scrimmage',
     badgeColor: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
   },
   {
     id: 'court-2',
-    name: 'Sân 2 - DVA Pro Training Court',
+    name: 'Sân B',
     flooring: 'Thảm Taraflex cao su đệm kép giảm tải chấn khớp gối',
     ceilingHeight: '10.0 mét không cản gió',
     lighting: 'Hệ thống đèn đối xứng không đổ bóng',
@@ -176,8 +184,7 @@ export const DVA_PACKAGES: TrainingPackage[] = [
     features: [
       'Giao lưu cọ xát thực chiến 2 - 3 tiếng',
       'Được bốc thăm ghép đội ngẫu nhiên cân bằng trình độ',
-      'Miễn phí bóng thi đấu Mikasa V200W và nước uống tại sân',
-      'Có bảng điểm điện tử và quay video trận đấu',
+      'Quay video trận đấu',
     ],
     schedule: 'Các buổi tối Thứ 2 - 4 - 6 & Chủ Nhật (18:30 - 21:30)',
   },
@@ -197,7 +204,7 @@ export const DVA_PACKAGES: TrainingPackage[] = [
       'Chuyền hai phân phối đều đường bóng cho từng tay đập',
       'Khởi động đập bóng chuyên biệt theo vị trí trước trận',
     ],
-    schedule: 'Các buổi tối Thứ 3 - 5 - 7 (18:00 - 20:30 & 20:30 - 22:30)',
+    schedule: 'Các buổi tối Thứ 2 - 4 - 6 - 7 (19:00 - 21:30) & Chủ Nhật (14:00 - 16:30)',
   },
   {
     id: 'pkg-scrimmage-position-care',
@@ -215,7 +222,7 @@ export const DVA_PACKAGES: TrainingPackage[] = [
       'Nhắc nhịp đà, góc gập cổ tay, vị trí bọc lót và bắt bước 1',
       'Đánh giá điểm mạnh/yếu cá nhân và bài tập cải thiện sau buổi',
     ],
-    schedule: 'Thứ 7 & Chủ Nhật hàng tuần (16:30 - 19:00)',
+    schedule: 'Các buổi tối Thứ 2 - 4 - 6 - 7 (19:00 - 21:30) & Chủ Nhật (14:00 - 16:30)',
   },
   {
     id: 'pkg-scrimmage-team',
@@ -230,10 +237,8 @@ export const DVA_PACKAGES: TrainingPackage[] = [
     features: [
       'Chi phí trọn gói cực tốt cho cả đội 6-10 thành viên',
       'Được sắp xếp đối thủ có trình độ tương đương để cọ xát căng thẳng',
-      'Có trọng tài điều khiển và biên bản chấm điểm set đấu chuẩn VFV',
-      'Tặng 1 thùng nước suối ướp lạnh cho team',
     ],
-    schedule: 'Đặt lịch linh hoạt theo khung giờ trống của sân',
+    schedule: 'Các buổi tối Thứ 2 - 4 - 6 - 7 (19:00 - 21:30) & Chủ Nhật (14:00 - 16:30)',
   },
   {
     id: 'pkg-group-custom',
@@ -242,12 +247,12 @@ export const DVA_PACKAGES: TrainingPackage[] = [
     targetAudience: 'Nhóm bạn thân, đồng nghiệp muốn cùng nâng cao kỹ năng',
     badge: 'Đào Tạo Nhóm',
     unitPrice: 2500000,
-    unitLabel: 'nhóm (3-5 người) / session 90p',
+    unitLabel: 'nhóm (3-5 người) / session 120p',
     popular: false,
     description: 'Giáo trình thiết kế riêng 100% theo mục tiêu của nhóm: tập phối hợp bước 1 - chuyền 2, chiến thuật hàng chắn, đập bóng phối hợp nhanh lao - nhú.',
     features: [
       'Nhóm riêng biệt 3 - 5 người, không ghép người lạ',
-      'HLV bằng A FIVB trực tiếp huấn luyện trọn vẹn 90 phút',
+      'HLV trực tiếp huấn luyện trọn vẹn 120 phút',
       'Sử dụng dàn bóng tập Mikasa và máy bắn bóng tự động',
       'Linh hoạt chọn chủ đề: Bước 1, Đập bóng, Sức bật, Chuyền hai',
     ],
@@ -260,9 +265,9 @@ export const DVA_PACKAGES: TrainingPackage[] = [
     targetAudience: 'VĐV muốn đột phá kỹ thuật cá nhân cấp tốc',
     badge: 'Chuyên Sâu 1 Kèm 1',
     unitPrice: 2000000,
-    unitLabel: 'người / session 90p',
+    unitLabel: 'người / session 120p',
     popular: true,
-    description: 'Chế độ 1 thầy 1 trò chuyên sâu nhất: Phân tích video chuyển động quay chậm 240fps, bẻ khớp tay sửa đà 3 bước, sửa dáng phát bóng và bạt bóng cắm sân.',
+    description: 'Chế độ 1 thầy 1 trò chuyên sâu nhất: Phân tích video chuyển động quay chậm 120fps, bẻ khớp tay sửa đà 3 bước, sửa dáng phát bóng và bạt bóng cắm sân.',
     features: [
       'Tập trung 100% thời lượng của HLV chỉ cho riêng bạn',
       'Đo lường sức bật nhảy dọc bằng thiết bị điện tử chuyên dụng',
@@ -274,17 +279,13 @@ export const DVA_PACKAGES: TrainingPackage[] = [
 ];
 
 export const SLOT_TIME_WINDOWS = [
-  { start: '06:00', end: '07:30', duration: 1.5, peak: false },
-  { start: '07:30', end: '09:00', duration: 1.5, peak: false },
-  { start: '09:00', end: '10:30', duration: 1.5, peak: false },
-  { start: '10:30', end: '12:00', duration: 1.5, peak: false },
-  { start: '13:30', end: '15:00', duration: 1.5, peak: false },
-  { start: '15:00', end: '16:30', duration: 1.5, peak: false },
-  { start: '16:30', end: '18:00', duration: 1.5, peak: true },
-  { start: '18:00', end: '19:30', duration: 1.5, peak: true },
-  { start: '19:30', end: '21:00', duration: 1.5, peak: true },
-  { start: '21:00', end: '22:30', duration: 1.5, peak: true },
-  { start: '22:30', end: '23:30', duration: 1.0, peak: false },
+  { start: '06:00', end: '08:00', duration: 2, peak: false },
+  { start: '08:00', end: '10:00', duration: 2, peak: false },
+  { start: '10:00', end: '12:00', duration: 2, peak: false },
+  { start: '12:00', end: '14:00', duration: 2, peak: false },
+  { start: '14:00', end: '17:00', duration: 3, peak: false },
+  { start: '17:00', end: '19:00', duration: 2, peak: false },
+  { start: '19:00', end: '21:30', duration: 2.5, peak: true },
 ];
 
 /**

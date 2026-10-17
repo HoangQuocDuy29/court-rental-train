@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   MapPin,
@@ -14,11 +14,12 @@ import {
   Send,
   Lock,
 } from 'lucide-react';
-import { DVA_CONTACT_INFO } from '../../data/mockData';
+import { DVA_CONTACT_INFO, BRAND_CONFIG } from '../../data/mockData';
 import { useBooking } from '../../context/BookingContext';
 
 export const Footer: React.FC = () => {
   const { isAdminAuthenticated, setIsAuthModalOpen } = useBooking();
+  const [logoError, setLogoError] = useState(false);
   return (
     <footer className="bg-slate-950 border-t border-slate-900 pt-16 pb-12 text-slate-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -84,15 +85,28 @@ export const Footer: React.FC = () => {
           {/* Col 1: About */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-500 text-slate-950 flex items-center justify-center font-black">
-                <span className="text-xs font-black">DVA</span>
-              </div>
-              <span className="text-xl font-black text-white">
-                DVA <span className="text-amber-400">VOLLEYBALL</span>
+              {!logoError && BRAND_CONFIG.logoUrl ? (
+                <img
+                  src={BRAND_CONFIG.logoUrl}
+                  alt={BRAND_CONFIG.brandName}
+                  className="h-10 w-auto max-w-[140px] object-contain drop-shadow"
+                  onError={() => setLogoError(true)}
+                />
+              ) : (
+                <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-500 text-slate-950 flex items-center justify-center font-black shadow-md">
+                  <span className="text-xs font-black">DVA</span>
+                </div>
+              )}
+              <span className="text-xl font-black text-white flex items-center gap-1.5">
+                {/* Nếu logo không tải được thì hiện chữ DVA; khi có ảnh logo thì ảnh thay thế chữ DVA */}
+                {logoError && <span>DVA</span>}
+                {BRAND_CONFIG.showVolleyballText && (
+                  <span className="text-amber-400">VOLLEYBALL</span>
+                )}
               </span>
             </div>
             <p className="text-sm leading-relaxed text-slate-400">
-              Sân bóng chuyền trong nhà chuyên nghiệp chuẩn FIVB tại TP.HCM. Thảm Gerflor Taraflex 7mm, bóng thi đấu Mikasa V200W, cọ xát Scrimmage và các khóa đào tạo kỹ năng chuyên sâu.
+              Sân bóng chuyền trong nhà chuyên nghiệp chuẩn VFV tại Hà Nội. Thảm Gerflor Taraflex 7mm, bóng thi đấu Mikasa V200W, cọ xát Scrimmage và các khóa đào tạo kỹ năng chuyên sâu.
             </p>
             <div className="flex items-center gap-2 p-3 rounded-2xl bg-slate-900/80 border border-slate-800 text-xs text-amber-400 font-medium">
               <Award className="w-4 h-4 text-amber-400 flex-shrink-0" />
